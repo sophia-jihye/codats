@@ -252,10 +252,10 @@ def get_results(dataset, variant, variant_match, source_feature_subset,
     if variant_match is None:
         variant_match = variant
 
-    files = get_tuning_files("results",
-        prefix="results_"+dataset+"_"+variant_match+"-")
+    files = get_tuning_files("results", prefix="results_example_best_target-ucihar-0-")
+        #prefix="results_"+dataset+"_"+variant_match+"-")
     results = all_stats(files, source_feature_subset, target_feature_subset)
-
+    print(results)
     return results
 
 

@@ -375,7 +375,6 @@ class uWaveBase(Dataset):
         """ Load ZIP file containing all the RAR files """
         data = []
         labels = []
-
         with zipfile.ZipFile(filename, "r") as archive:
             filelist = archive.namelist()
 
@@ -638,6 +637,7 @@ class UciHarBase(Dataset):
 
     def load_file(self, filename):
         """ Load ZIP file containing all the .txt files """
+        filename = '/home/jihye/GIT/codats/datasets/UCI HAR Dataset.zip'
         with zipfile.ZipFile(filename, "r") as archive:
             train_data, train_labels, train_subjects = self.get_data(archive, "train")
             test_data, test_labels, test_subjects = self.get_data(archive, "test")

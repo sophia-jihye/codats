@@ -9,7 +9,6 @@ import yaml
 import pathlib
 import multiprocessing
 import tensorflow as tf
-
 from absl import app
 from absl import flags
 
@@ -44,7 +43,7 @@ def get_gpus():
     """
     Get the list of GPU ID's that SLURM is giving us
     """
-    return [int(x) for x in os.getenv("SLURM_JOB_GPUS", "").split(",")]
+    return tf.config.experimental.list_physical_devices('GPU') #return [int(x) for x in os.getenv("SLURM_JOB_GPUS", "").split(",")]
 
 
 def get_pool_id():

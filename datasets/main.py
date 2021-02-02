@@ -125,7 +125,7 @@ def main(argv):
         os.makedirs(output_dir)
 
     # Get all possible datasets we can generate
-    adaptation_problems = datasets.names()
+    adaptation_problems = ['ucihar_1', 'ucihar_2', 'ucihar_3', 'ucihar_4', 'ucihar_5', 'ucihar_6', 'ucihar_7', 'ucihar_8', 'ucihar_9', 'ucihar_10', 'ucihar_11', 'ucihar_12', 'ucihar_13', 'ucihar_14', 'ucihar_15', 'ucihar_16', 'ucihar_17', 'ucihar_18', 'ucihar_19', 'ucihar_20', 'ucihar_21', 'ucihar_22', 'ucihar_23', 'ucihar_24', 'ucihar_25', 'ucihar_26', 'ucihar_27', 'ucihar_28', 'ucihar_29', 'ucihar_30'] # datasets.names()
 
     # Save tfrecord files for each of the adaptation problems
     if FLAGS.parallel:
