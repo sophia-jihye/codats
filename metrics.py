@@ -388,12 +388,12 @@ class Metrics:
         self._run_dataset(self.method.source_test_eval_datasets,
             target_datasets, dataset)
 
-        # We use the validation accuracy to save the best model
-        acc_source = self.batch_metrics["validation"]["accuracy_task/source/validation"]
+        # We use the validation Macro F1-score instead of accuracy to save the best model
+        acc_source = self.batch_metrics["validation"]["f1score_macro_task/source/validation"]
         validation_accuracy_source = float(acc_source.result())
 
         if self.target_domain:
-            acc_target = self.batch_metrics["validation"]["accuracy_task/target/validation"]
+            acc_target = self.batch_metrics["validation"]["f1score_macro_task/target/validation"]
             validation_accuracy_target = float(acc_target.result())
         else:
             validation_accuracy_target = None

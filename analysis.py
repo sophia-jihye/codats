@@ -21,7 +21,7 @@ FLAGS = flags.FLAGS
 
 flags.DEFINE_integer("jobs", 0, "Number of jobs to use for processing files (0 == number of cores)")
 flags.DEFINE_bool("paper", False, "Whether to make paper-version plots (e.g. .pdf not .png), outputs to result_plots_paper")
-flags.DEFINE_enum("metric", "accuracy", ["accuracy"], "Which metric to plot")  # TODO add F1 score
+flags.DEFINE_enum("metric", "f1score_macro", ["f1score_macro"], "Which metric to plot")  # TODO add F1 score
 
 
 # Use nice names for the plot
