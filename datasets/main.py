@@ -21,6 +21,7 @@ from sklearn.model_selection import train_test_split
 from datasets import datasets
 from pool import run_job_pool
 from datasets.tfrecord import write_tfrecord, tfrecord_filename
+from datasets.SvidDataset import SvidDataset
 
 FLAGS = flags.FLAGS
 
@@ -92,10 +93,13 @@ def save_dataset(dataset_name, output_dir, seed=0):
 
     if FLAGS.debug:
         print("Saving dataset", dataset_name)
-    dataset, dataset_class = datasets.load(dataset_name)
+    if dataset_name == 'ucihar_14': recipe_num = 1
+    elif dataset_name == 'ucihar_19': recipe_num = 2
+    dataset = SvidDataset(recipe_num)   # dataset, dataset_class = datasets.load(dataset_name)
+    train_data, train_labels, test_data, test_labels = dataset.train_data, dataset.train_labels, dataset.test_data, dataset.test_labels
 
     # Skip if already normalized/bounded, e.g. UCI HAR datasets
-    already_normalized = dataset_class.already_normalized
+    already_normalized = False   # already_normalized = dataset_class.already_normalized
 
     # Split into training/valid datasets
     valid_data, valid_labels, train_data, train_labels = \
@@ -125,7 +129,7 @@ def main(argv):
         os.makedirs(output_dir)
 
     # Get all possible datasets we can generate
-    adaptation_problems = ['ucihar_1', 'ucihar_2', 'ucihar_3', 'ucihar_4', 'ucihar_5', 'ucihar_6', 'ucihar_7', 'ucihar_8', 'ucihar_9', 'ucihar_10', 'ucihar_11', 'ucihar_12', 'ucihar_13', 'ucihar_14', 'ucihar_15', 'ucihar_16', 'ucihar_17', 'ucihar_18', 'ucihar_19', 'ucihar_20', 'ucihar_21', 'ucihar_22', 'ucihar_23', 'ucihar_24', 'ucihar_25', 'ucihar_26', 'ucihar_27', 'ucihar_28', 'ucihar_29', 'ucihar_30'] # datasets.names()
+    adaptation_problems = ['ucihar_14', 'ucihar_19'] # datasets.names()
 
     # Save tfrecord files for each of the adaptation problems
     if FLAGS.parallel:
