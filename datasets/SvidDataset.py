@@ -6,6 +6,7 @@ import os
 
 SVID_RAW_DIR = '/data/jihye_data/Samsung_time-series/SVID/rawdata'
 RANDOM_STATE = 0
+FIXED_LENGTH= 1870   # Source의 maximum
 
 def get_numpy_from_nonfixed_2d_array(aa, fixed_length, padding_value=0):
     rows = []
@@ -48,8 +49,7 @@ class SvidDataset():
             svid_df['STEP01-25_sensors'] = svid_df.apply(lambda x: np.hstack([x['STEP01-25_sensors'], x[colname]]),axis=1)
             svid_df.drop(columns=[colname], inplace=True)
             
-        fixed_length= 1952   # Source domain과 Unlabeled target domain 중 max length로 맞춰야 함
-        svid_df['STEP01-25_sensors'] = svid_df['STEP01-25_sensors'].apply(lambda x: get_numpy_from_nonfixed_2d_array(x, fixed_length, padding_value=0))
+        svid_df['STEP01-25_sensors'] = svid_df['STEP01-25_sensors'].apply(lambda x: get_numpy_from_nonfixed_2d_array(x, FIXED_LENGTH, padding_value=0))
         return svid_df
     
     def get_X_y(self, df):
