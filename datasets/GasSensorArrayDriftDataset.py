@@ -24,5 +24,6 @@ class GasSensorArrayDriftDataset():
     def get_X_y(self, df):
         X = df[df.columns[1:]].values.astype(np.float32)
         X = np.expand_dims(X, axis=0)
+        X = np.swapaxes(X,0,1)
         y = df[0].values.astype(np.float32)
         return X, y
