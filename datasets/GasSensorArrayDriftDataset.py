@@ -8,7 +8,7 @@ RAW_DIR = '/data/jihye_data/BenchmarkDataset/Gas_Sensor_Array_Drift_Dataset'
 RANDOM_STATE = 0
 
 class GasSensorArrayDriftDataset():
-    def __init__(self, recipe_num=1):
+    def __init__(self, dataset_id=1):
         df = self.load_data(RAW_DIR, dataset_id)
         X, y = self.get_X_y(df)
         self.train_data, self.test_data, self.train_labels, self.test_labels = train_test_split(X, y, test_size=0.2, stratify=y, random_state=RANDOM_STATE)
