@@ -21,7 +21,8 @@ from sklearn.model_selection import train_test_split
 from datasets import datasets
 from pool import run_job_pool
 from datasets.tfrecord import write_tfrecord, tfrecord_filename
-from datasets.SvidDataset import SvidDataset
+#from datasets.SvidDataset import SvidDataset as CustomDataset
+from datasets.GasSensorArrayDriftDataset import GasSensorArrayDriftDataset as CustomDataset
 
 FLAGS = flags.FLAGS
 
@@ -93,13 +94,13 @@ def save_dataset(dataset_name, output_dir, seed=0):
 
     if FLAGS.debug:
         print("Saving dataset", dataset_name)
-    if dataset_name == 'ucihar_14': recipe_num = 1
-    elif dataset_name == 'ucihar_19': recipe_num = 2
-    dataset = SvidDataset(recipe_num)   # dataset, dataset_class = datasets.load(dataset_name)
+    if dataset_name == 'ucihar_14': dataset_id = 1
+    elif dataset_name == 'ucihar_19': dataset_id = 2
+    dataset = CustomDataset(dataset_id)   # dataset, dataset_class = datasets.load(dataset_name)
     train_data, train_labels, test_data, test_labels = dataset.train_data, dataset.train_labels, dataset.test_data, dataset.test_labels
 
     # Skip if already normalized/bounded, e.g. UCI HAR datasets
-    already_normalized = False   # already_normalized = dataset_class.already_normalized
+    already_normalized = True   # already_normalized = dataset_class.already_normalized
 
     # Split into training/valid datasets
     valid_data, valid_labels, train_data, train_labels = \
