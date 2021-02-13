@@ -21,8 +21,8 @@ from sklearn.model_selection import train_test_split
 from datasets import datasets
 from pool import run_job_pool
 from datasets.tfrecord import write_tfrecord, tfrecord_filename
-#from datasets.SvidDataset import SvidDataset as CustomDataset
-from datasets.GasSensorArrayDriftDataset import GasSensorArrayDriftDataset as CustomDataset
+from datasets.SvidDataset import SvidDataset as CustomDataset
+# from datasets.GasSensorArrayDriftDataset import GasSensorArrayDriftDataset as CustomDataset
 
 FLAGS = flags.FLAGS
 
