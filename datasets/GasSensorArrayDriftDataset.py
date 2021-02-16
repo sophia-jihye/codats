@@ -29,6 +29,7 @@ class GasSensorArrayDriftDataset():
         df = df[df.columns[1:]]
         results = df.apply(lambda x: x.dropna().tolist(), axis=1).tolist()
         matrix_df = pd.DataFrame({'sensor*time': results, 'fault': faults})
+        matrix_df['fault'] = matrix_df['fault'].apply(lambda x: x-1)
         matrix_df['sensors'] = matrix_df['sensor*time'].apply(lambda x: list_to_2d_array(x, 16))
         return matrix_df
     
