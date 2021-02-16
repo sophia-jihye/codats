@@ -23,7 +23,7 @@ class GasSensorArrayDriftDataset():
         def list_to_2d_array(list_x, sensor_num):
             x = np.array(list_x)
             x_new = x.reshape((sensor_num, -1))
-            return x_new.transpose()
+            return x_new   # (?, 16, 8)
         
         faults = df[df.columns[0]]
         df = df[df.columns[1:]]
